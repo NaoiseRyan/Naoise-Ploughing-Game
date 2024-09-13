@@ -29,6 +29,7 @@ func end_tutorial() -> void:
 func _on_heart_spawner_timeout() -> void:
 	var new_heart = heart_scene.instantiate()
 	$Spawn_Path.add_child(new_heart)
+	new_heart.player_collision.connect(player_pickup_heart)
 	new_heart.position = get_random_spawn_point()
 
 
@@ -36,3 +37,6 @@ func get_random_spawn_point():
 	var random_point = $Spawn_Path/Spawn_Path_Point
 	random_point.progress_ratio = randf()
 	return random_point.position
+
+func player_pickup_heart():
+	$Hud.update_score(1)

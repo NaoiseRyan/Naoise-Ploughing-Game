@@ -21,9 +21,6 @@ visible = false
 [node name="Background" parent="." instance=ExtResource("4_bv8yi")]
 visible = false
 
-[node name="Player" parent="." instance=ExtResource("1_pqwji")]
-position = Vector2(-216, 80)
-
 [node name="Hud" parent="." instance=ExtResource("5_cs070")]
 
 [node name="Spawn_Path" type="Path2D" parent="."]
@@ -33,6 +30,9 @@ curve = SubResource("Curve2D_eeddm")
 
 [node name="Spawn_Path_Point" type="PathFollow2D" parent="Spawn_Path"]
 position = Vector2(0, -64)
+
+[node name="Player" parent="." instance=ExtResource("1_pqwji")]
+position = Vector2(-216, 80)
 
 [node name="HeartSpawner" type="Timer" parent="."]
 

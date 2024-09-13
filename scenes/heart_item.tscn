@@ -6,9 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_alosi"]
 size = Vector2(60.5714, 54.8571)
 
-[node name="Heart_item" type="StaticBody2D"]
-texture_filter = 1
-scale = Vector2(1.75, 1.75)
+[node name="HeartItem" type="Area2D" groups=["Item"]]
+scale = Vector2(1.5, 1.5)
 collision_layer = 16
 script = ExtResource("1_wncvk")
 
@@ -22,3 +21,5 @@ texture = ExtResource("1_tn3um")
 position = Vector2(0.571428, 5.71428)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_alosi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
