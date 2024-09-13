@@ -1,19 +1,71 @@
-[gd_scene load_steps=4 format=3 uid="uid://7ptfg87qr38n"]
+[gd_scene load_steps=9 format=3 uid="uid://7ptfg87qr38n"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_0bwg0"]
-[ext_resource type="Texture2D" uid="uid://m4msmnoqg087" path="res://icon.svg" id="1_xdgn5"]
+[ext_resource type="Texture2D" uid="uid://4r7nmrtofofw" path="res://Assets/dove_spritesheet.png" id="2_ax44u"]
+[ext_resource type="Texture2D" uid="uid://dcomdomrywnxu" path="res://Assets/peace_shield.png" id="3_t133e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvnth"]
+atlas = ExtResource("2_ax44u")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_454ho"]
+atlas = ExtResource("2_ax44u")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wy83q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvnth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_454ho")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k610k"]
-size = Vector2(113, 117)
+size = Vector2(99, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xavjg"]
+size = Vector2(209, 89)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 16
+collision_mask = 30
 motion_mode = 1
 script = ExtResource("1_0bwg0")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_xdgn5")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_wy83q")
+animation = &"fly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -0.5)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_k610k")
+
+[node name="peace_shield" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="peace_shield"]
+position = Vector2(-1.5, -93.5)
+shape = SubResource("RectangleShape2D_xavjg")
+
+[node name="Sprite2D" type="Sprite2D" parent="peace_shield"]
+texture_filter = 1
+position = Vector2(-1, -82)
+scale = Vector2(1.60156, 1.71875)
+texture = ExtResource("3_t133e")
+
+[node name="peace_shield_timer" type="Timer" parent="peace_shield"]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="area_entered" from="peace_shield" to="." method="_on_peace_shield_area_entered"]
+[connection signal="area_shape_entered" from="peace_shield" to="." method="_on_peace_shield_area_shape_entered"]
+[connection signal="body_entered" from="peace_shield" to="." method="_on_peace_shield_body_entered"]
+[connection signal="timeout" from="peace_shield/peace_shield_timer" to="." method="_on_peace_shield_timer_timeout"]

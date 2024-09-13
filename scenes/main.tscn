@@ -21,8 +21,6 @@ visible = false
 [node name="Background" parent="." instance=ExtResource("4_bv8yi")]
 visible = false
 
-[node name="Hud" parent="." instance=ExtResource("5_cs070")]
-
 [node name="Spawn_Path" type="Path2D" parent="."]
 position = Vector2(40, 0)
 scale = Vector2(0.866667, 1)
@@ -35,7 +33,21 @@ position = Vector2(0, -64)
 position = Vector2(-216, 80)
 
 [node name="HeartSpawner" type="Timer" parent="."]
+wait_time = 4.75
+
+[node name="enemySpawner" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="peaceSpawner" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Hud" parent="." instance=ExtResource("5_cs070")]
 
 [connection signal="game_start" from="Menus" to="." method="_on_main_menu_game_start"]
+[connection signal="game_start" from="Menus" to="Player" method="_on_menus_game_start"]
 [connection signal="game_start" from="Menus" to="Hud" method="_on_menus_game_start"]
+[connection signal="peace_shield_end" from="Player" to="Hud" method="_on_player_peace_shield_end"]
 [connection signal="timeout" from="HeartSpawner" to="." method="_on_heart_spawner_timeout"]
+[connection signal="timeout" from="enemySpawner" to="." method="_on_enemy_spawner_timeout"]
+[connection signal="timeout" from="peaceSpawner" to="." method="_on_peace_spawner_timeout"]
+[connection signal="release_peace" from="Hud" to="." method="_on_hud_release_peace"]

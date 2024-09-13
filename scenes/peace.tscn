@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://beycdlqqm35ui"]
+
+[ext_resource type="Script" path="res://scenes/peace.gd" id="1_e26og"]
+[ext_resource type="Texture2D" uid="uid://dilhbvjivbvnd" path="res://Assets/Sprite-0002.png" id="1_enkm1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hf5op"]
+radius = 34.0
+
+[node name="Peace" type="Area2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 16
+script = ExtResource("1_e26og")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 2.66667)
+scale = Vector2(1, 0.916667)
+texture = ExtResource("1_enkm1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_hf5op")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

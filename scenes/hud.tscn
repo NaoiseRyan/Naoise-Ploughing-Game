@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://pw068sg14fvs"]
+[gd_scene load_steps=7 format=3 uid="uid://pw068sg14fvs"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_qkxm0"]
 
@@ -15,6 +15,15 @@ font_size = 100
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_647tb"]
+bg_color = Color(0.922378, 0.434787, 0.283731, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y0r3n"]
+font_size = 35
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2y82"]
+size = Vector2(341, 1280)
+
 [node name="Hud" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -29,6 +38,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Collect_Love" type="Label" parent="Tutorial_Text"]
+layout_mode = 0
 offset_top = 176.0
 offset_right = 720.0
 offset_bottom = 840.0
@@ -39,6 +49,7 @@ horizontal_alignment = 1
 justification_flags = 162
 
 [node name="Spread_Peace" type="Label" parent="Tutorial_Text"]
+layout_mode = 0
 offset_right = 720.0
 offset_bottom = 840.0
 theme_override_font_sizes/font_size = 60
@@ -49,6 +60,7 @@ vertical_alignment = 1
 justification_flags = 162
 
 [node name="Avoid_War" type="Label" parent="Tutorial_Text"]
+layout_mode = 0
 offset_right = 720.0
 offset_bottom = 664.0
 theme_override_font_sizes/font_size = 60
@@ -60,10 +72,45 @@ justification_flags = 162
 
 [node name="Score_Count" type="Label" parent="."]
 layout_mode = 0
+offset_left = 592.0
 offset_right = 712.0
-offset_bottom = 80.0
+offset_bottom = 137.0
 theme_override_font_sizes/font_size = 100
 text = "0"
 label_settings = SubResource("LabelSettings_f4q2e")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 40.0
+offset_right = 576.0
+offset_bottom = 104.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_647tb")
+show_percentage = false
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 0
+offset_right = 544.0
+offset_bottom = 64.0
+text = "Peace meter"
+label_settings = SubResource("LabelSettings_y0r3n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="move_left" type="TouchScreenButton" parent="."]
+position = Vector2(190, 640)
+scale = Vector2(1.12, 1.12)
+shape = SubResource("RectangleShape2D_g2y82")
+passby_press = true
+action = "move_left"
+
+[node name="move_right" type="TouchScreenButton" parent="."]
+position = Vector2(552, 640)
+scale = Vector2(-1, -1.08819)
+shape = SubResource("RectangleShape2D_g2y82")
+passby_press = true
+action = "move_right"
+
+[connection signal="value_changed" from="ProgressBar" to="." method="_on_progress_bar_value_changed"]

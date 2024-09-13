@@ -1,6 +1,8 @@
 extends Node2D
 
 var heart_scene = preload("res://scenes/heart_item.tscn")
+var peace_scene = preload("res://scenes/peace.tscn")
+var npc_hostile_scene = preload("res://scenes/npc_hostile.tscn")
 
 signal tutorial_over
 
@@ -24,9 +26,12 @@ func end_tutorial() -> void:
 	tutorial_over.emit()
 	$Background/Bg_Parallax.autoscroll.y = 1000
 	$HeartSpawner.start()
+	$enemySpawner.start()
+	$peaceSpawner.start()
 
 
 func _on_heart_spawner_timeout() -> void:
+	$HeartSpawner.wait_time = RandomNumberGenerator.new().randf_range(0.1, 2)
 	var new_heart = heart_scene.instantiate()
 	$Spawn_Path.add_child(new_heart)
 	new_heart.player_collision.connect(player_pickup_heart)
@@ -40,3 +45,29 @@ func get_random_spawn_point():
 
 func player_pickup_heart():
 	$Hud.update_score(1)
+
+
+func _on_enemy_spawner_timeout() -> void:
+	$enemySpawner.wait_time = RandomNumberGenerator.new().randf_range(.4, 3)
+	var new_enemy = npc_hostile_scene.instantiate()
+	$Spawn_Path.add_child(new_enemy)
+	new_enemy.player_collision.connect(player_hit_enemy)
+	new_enemy.position = get_random_spawn_point()
+
+func player_hit_enemy():
+	$Hud.update_score(-1)
+
+
+func _on_peace_spawner_timeout() -> void:
+	$peaceSpawner.wait_time = RandomNumberGenerator.new().randf_range(3, 6)
+	var new_peace = peace_scene.instantiate()
+	$Spawn_Path.add_child(new_peace)
+	new_peace.player_collision.connect(player_pickup_peace)
+	new_peace.position = get_random_spawn_point()
+
+func player_pickup_peace():
+	$Hud.update_peace_meter(20)
+
+
+func _on_hud_release_peace() -> void:
+	$Player.enable_peace_shield()

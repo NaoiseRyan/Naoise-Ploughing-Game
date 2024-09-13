@@ -1,5 +1,7 @@
 extends Control
 
+signal release_peace
+
 var score = 0
 
 func _ready() -> void:
@@ -31,3 +33,21 @@ func update_score(new_score):
 
 func _on_menus_game_start() -> void:
 	var score = 0
+
+func update_peace_meter(score):
+	$ProgressBar.value += score
+	if $ProgressBar.value > 100:
+		$ProgressBar.value = 100
+
+
+func _on_progress_bar_value_changed(value: float) -> void:
+	if $ProgressBar.value >= 100:
+		print("peace max")
+		release_peace.emit()
+		
+func reset_peace_meter():
+	$ProgressBar.value = 0
+
+
+func _on_player_peace_shield_end() -> void:
+	reset_peace_meter()

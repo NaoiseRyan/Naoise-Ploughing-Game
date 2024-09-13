@@ -12,3 +12,6 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	player_collision.emit()
 	queue_free()
+
+func destroy_self():
+	queue_free()

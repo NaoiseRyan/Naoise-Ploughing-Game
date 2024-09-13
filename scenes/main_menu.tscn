@@ -51,7 +51,6 @@ text = "Credits
 icon_alignment = 1
 
 [node name="Credits_Menu" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -65,8 +64,8 @@ color = Color(0.604367, 0.431358, 0.48821, 1)
 [node name="Label" type="Label" parent="Credits_Menu/ColorRect"]
 layout_mode = 0
 offset_right = 720.0
-offset_bottom = 640.0
-theme_override_font_sizes/font_size = 50
+offset_bottom = 912.0
+theme_override_font_sizes/font_size = 45
 text = "Game created by:
 Naoise Ryan
 
@@ -74,9 +73,12 @@ Linkedin:
 naoiseryan
 
 Email:
- naoiseryan20@gmail.com"
+ naoiseryan20@gmail.com
+
+I wanted to create a game where the player cannot attack to show you that peace is always an option"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Go Back" type="Button" parent="Credits_Menu"]
 layout_mode = 0
