@@ -1,15 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://n3vggbquo6d7"]
+[gd_scene load_steps=7 format=3 uid="uid://n3vggbquo6d7"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_flapf"]
 [ext_resource type="PackedScene" uid="uid://7ptfg87qr38n" path="res://scenes/player.tscn" id="1_pqwji"]
 [ext_resource type="PackedScene" uid="uid://cw45j0ba3l2f0" path="res://scenes/main_menu.tscn" id="2_4p8au"]
+[ext_resource type="PackedScene" uid="uid://b8o16ukwudkdn" path="res://scenes/background.tscn" id="4_bv8yi"]
+[ext_resource type="PackedScene" uid="uid://pw068sg14fvs" path="res://scenes/hud.tscn" id="5_cs070"]
+
+[sub_resource type="Curve2D" id="Curve2D_eeddm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -64, 0, 0, 0, 0, 720, -64, 0, 0, 0, 0, 720, -128, 0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 0, -64)
+}
+point_count = 5
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_flapf")
 
-[node name="Main Menu" parent="." instance=ExtResource("2_4p8au")]
+[node name="Menus" parent="." instance=ExtResource("2_4p8au")]
+visible = false
+
+[node name="Background" parent="." instance=ExtResource("4_bv8yi")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("1_pqwji")]
 position = Vector2(-216, 80)
 
-[connection signal="game_start" from="Main Menu" to="." method="_on_main_menu_game_start"]
+[node name="Hud" parent="." instance=ExtResource("5_cs070")]
+
+[node name="Spawn_Path" type="Path2D" parent="."]
+position = Vector2(40, 0)
+scale = Vector2(0.866667, 1)
+curve = SubResource("Curve2D_eeddm")
+
+[node name="Spawn_Path_Point" type="PathFollow2D" parent="Spawn_Path"]
+position = Vector2(0, -64)
+
+[node name="HeartSpawner" type="Timer" parent="."]
+
+[connection signal="game_start" from="Menus" to="." method="_on_main_menu_game_start"]
+[connection signal="game_start" from="Menus" to="Hud" method="_on_menus_game_start"]
+[connection signal="timeout" from="HeartSpawner" to="." method="_on_heart_spawner_timeout"]
