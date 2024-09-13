@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://n3vggbquo6d7"]
+[gd_scene load_steps=4 format=3 uid="uid://n3vggbquo6d7"]
 
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_flapf"]
 [ext_resource type="PackedScene" uid="uid://7ptfg87qr38n" path="res://scenes/player.tscn" id="1_pqwji"]
 [ext_resource type="PackedScene" uid="uid://cw45j0ba3l2f0" path="res://scenes/main_menu.tscn" id="2_4p8au"]
 
 [node name="Main" type="Node2D"]
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_pqwji")]
-position = Vector2(-266, 325)
+script = ExtResource("1_flapf")
 
 [node name="Main Menu" parent="." instance=ExtResource("2_4p8au")]
+
+[node name="Player" parent="." instance=ExtResource("1_pqwji")]
+position = Vector2(-216, 80)
+
+[connection signal="game_start" from="Main Menu" to="." method="_on_main_menu_game_start"]
