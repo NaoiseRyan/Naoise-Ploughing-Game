@@ -70,11 +70,11 @@ func _on_enemy_spawner_timeout() -> void:
 	new_enemy.position = get_random_spawn_point()
 
 func player_hit_enemy():
-	$Hud.update_score(-1)
+	$Hud.update_score(-2)
 
 
 func _on_peace_spawner_timeout() -> void:
-	$peaceSpawner.wait_time = RandomNumberGenerator.new().randf_range(3, 6)
+	$peaceSpawner.wait_time = RandomNumberGenerator.new().randf_range(4, 12)
 	var new_peace = peace_scene.instantiate()
 	$Spawn_Path.add_child(new_peace)
 	new_peace.player_collision.connect(player_pickup_peace)
@@ -82,6 +82,7 @@ func _on_peace_spawner_timeout() -> void:
 
 func player_pickup_peace():
 	$Hud.update_peace_meter(20)
+	$Hud.update_score(3)
 
 
 func _on_hud_release_peace() -> void:

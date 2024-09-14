@@ -115,4 +115,9 @@ shape_visible = false
 passby_press = true
 action = "move_right"
 
+[node name="ProgressBar2" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
 [connection signal="value_changed" from="ProgressBar" to="." method="_on_progress_bar_value_changed"]

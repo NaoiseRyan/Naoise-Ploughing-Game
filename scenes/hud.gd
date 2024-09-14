@@ -4,6 +4,9 @@ signal release_peace
 
 var score = 0
 
+var sb = StyleBoxFlat.new()
+
+
 func _ready() -> void:
 	hide_text()
 	$Score_Count.text = str(score)
@@ -42,9 +45,17 @@ func update_peace_meter(score):
 
 func _on_progress_bar_value_changed(value: float) -> void:
 	if $ProgressBar.value >= 100:
-		print("peace max")
+		sb.bg_color = Color("ffc905")
 		release_peace.emit()
-		
+	else:
+		update_peace_meter_color()
+
+func update_peace_meter_color():
+	$ProgressBar.add_theme_stylebox_override("fill", sb)
+	sb.bg_color = Color("ffc905")
+	await get_tree().create_timer(0.5).timeout
+	sb.bg_color = Color("ff7a05")
+
 func reset_peace_meter():
 	$ProgressBar.value = 0
 
