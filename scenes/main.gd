@@ -62,7 +62,7 @@ func end_tutorial() -> void:
 
 
 func _on_heart_spawner_timeout() -> void:
-	$HeartSpawner.wait_time = RandomNumberGenerator.new().randf_range(0.2, 5)
+	$HeartSpawner.wait_time = RandomNumberGenerator.new().randf_range(1.5, 7)
 	var new_heart = heart_scene.instantiate()
 	$Spawn_Path.add_child(new_heart)
 	new_heart.player_collision.connect(player_pickup_heart)
