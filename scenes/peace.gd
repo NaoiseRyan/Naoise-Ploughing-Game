@@ -4,9 +4,14 @@ signal player_collision
 
 const SCORE_VALUE = 3
 
+var speed
+
+func _ready() -> void:
+	speed = RandomNumberGenerator.new().randf_range(8, 16)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.y += 10
+	position.y += speed
 	if position.y > 1350:
 		queue_free()
 
