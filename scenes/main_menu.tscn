@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw45j0ba3l2f0"]
+[gd_scene load_steps=4 format=3 uid="uid://cw45j0ba3l2f0"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_ikam2"]
+[ext_resource type="Texture2D" uid="uid://dilhbvjivbvnd" path="res://Assets/Sprite-0002.png" id="2_dq4cs"]
+[ext_resource type="Texture2D" uid="uid://7kgaeyuj6u1r" path="res://Assets/menu_bird.png" id="2_rd1mi"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -18,23 +20,36 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 720.0
 offset_bottom = 1280.0
-color = Color(0.604367, 0.431358, 0.48821, 1)
+color = Color(0.269152, 0.482143, 0.817963, 1)
 
 [node name="Label" type="Label" parent="Main_Menu/ColorRect"]
 layout_mode = 0
 offset_right = 720.0
-offset_bottom = 320.0
+offset_bottom = 284.0
 theme_override_font_sizes/font_size = 85
 text = "Game Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Sprite-0002" type="Sprite2D" parent="Main_Menu"]
+texture_filter = 1
+position = Vector2(309, 427)
+scale = Vector2(4.65625, 4.65625)
+texture = ExtResource("2_dq4cs")
+
+[node name="MenuBird" type="Sprite2D" parent="Main_Menu"]
+texture_filter = 1
+position = Vector2(398, 570)
+rotation = 0.0434077
+scale = Vector2(1.51787, 1.51786)
+texture = ExtResource("2_rd1mi")
+
 [node name="Start Game" type="Button" parent="Main_Menu"]
 layout_mode = 0
 offset_left = 128.0
-offset_top = 960.0
+offset_top = 1081.0
 offset_right = 592.0
-offset_bottom = 1088.0
+offset_bottom = 1209.0
 theme_override_font_sizes/font_size = 60
 text = "Start Game"
 icon_alignment = 1
@@ -42,15 +57,16 @@ icon_alignment = 1
 [node name="Credits" type="Button" parent="Main_Menu"]
 layout_mode = 0
 offset_left = 128.0
-offset_top = 704.0
+offset_top = 882.0
 offset_right = 592.0
-offset_bottom = 832.0
+offset_bottom = 1010.0
 theme_override_font_sizes/font_size = 60
 text = "Credits
 "
 icon_alignment = 1
 
 [node name="Credits_Menu" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -83,9 +99,9 @@ autowrap_mode = 2
 [node name="Go Back" type="Button" parent="Credits_Menu"]
 layout_mode = 0
 offset_left = 128.0
-offset_top = 960.0
+offset_top = 1040.0
 offset_right = 592.0
-offset_bottom = 1088.0
+offset_bottom = 1168.0
 theme_override_font_sizes/font_size = 60
 text = "Back"
 icon_alignment = 1
