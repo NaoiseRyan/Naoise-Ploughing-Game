@@ -49,7 +49,7 @@ func end_tutorial() -> void:
 
 
 func _on_heart_spawner_timeout() -> void:
-	$HeartSpawner.wait_time = RandomNumberGenerator.new().randf_range(0.15 * difficulty_modifier, 2 * difficulty_modifier)
+	$HeartSpawner.wait_time = RandomNumberGenerator.new().randf_range(0.2, 5)
 	var new_heart = heart_scene.instantiate()
 	$Spawn_Path.add_child(new_heart)
 	new_heart.player_collision.connect(player_pickup_heart)
@@ -66,7 +66,7 @@ func player_pickup_heart():
 
 
 func _on_enemy_spawner_timeout() -> void:
-	$enemySpawner.wait_time = RandomNumberGenerator.new().randf_range(.4 / difficulty_modifier + 0.25, 3 / difficulty_modifier)
+	$enemySpawner.wait_time = RandomNumberGenerator.new().randf_range(.4 / difficulty_modifier + 0.9, 3 / difficulty_modifier)
 	var new_enemy = npc_hostile_scene.instantiate()
 	$Spawn_Path.add_child(new_enemy)
 	new_enemy.player_collision.connect(player_hit_enemy)
@@ -77,7 +77,7 @@ func player_hit_enemy():
 
 
 func _on_peace_spawner_timeout() -> void:
-	$peaceSpawner.wait_time = RandomNumberGenerator.new().randf_range(4, 12)
+	$peaceSpawner.wait_time = RandomNumberGenerator.new().randf_range(3, 10)
 	var new_peace = peace_scene.instantiate()
 	$Spawn_Path.add_child(new_peace)
 	new_peace.player_collision.connect(player_pickup_peace)
@@ -93,6 +93,5 @@ func _on_hud_release_peace() -> void:
 
 
 func _on_increase_difficulty_timeout() -> void:
-	difficulty_modifier += 0.25
+	difficulty_modifier += 1
 	$Background/Bg_Parallax.autoscroll.y += 100
-	print("aa")
