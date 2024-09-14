@@ -1,16 +1,58 @@
-[gd_scene load_steps=7 format=3 uid="uid://n3vggbquo6d7"]
+[gd_scene load_steps=14 format=3 uid="uid://n3vggbquo6d7"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_flapf"]
 [ext_resource type="PackedScene" uid="uid://7ptfg87qr38n" path="res://scenes/player.tscn" id="1_pqwji"]
 [ext_resource type="PackedScene" uid="uid://cw45j0ba3l2f0" path="res://scenes/main_menu.tscn" id="2_4p8au"]
 [ext_resource type="PackedScene" uid="uid://b8o16ukwudkdn" path="res://scenes/background.tscn" id="4_bv8yi"]
 [ext_resource type="PackedScene" uid="uid://pw068sg14fvs" path="res://scenes/hud.tscn" id="5_cs070"]
+[ext_resource type="Texture2D" uid="uid://bgwr7yu4v3p1v" path="res://Assets/tap_screen.png" id="6_68i4i"]
 
 [sub_resource type="Curve2D" id="Curve2D_eeddm"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, -64, 0, 0, 0, 0, 720, -64, 0, 0, 0, 0, 720, -128, 0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 0, -64)
 }
 point_count = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_ll6pa"]
+font_size = 90
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odwvy"]
+atlas = ExtResource("6_68i4i")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp6y0"]
+atlas = ExtResource("6_68i4i")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p27v"]
+atlas = ExtResource("6_68i4i")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1sxf"]
+atlas = ExtResource("6_68i4i")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x17lf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odwvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp6y0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p27v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1sxf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_flapf")
@@ -42,6 +84,33 @@ wait_time = 3.0
 wait_time = 3.0
 
 [node name="Hud" parent="." instance=ExtResource("5_cs070")]
+
+[node name="Press_to_move_label" type="Label" parent="."]
+offset_top = 463.0
+offset_right = 720.0
+offset_bottom = 684.0
+theme_override_font_sizes/font_size = 70
+text = "Press to Move"
+label_settings = SubResource("LabelSettings_ll6pa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="tap_screen_sprite_left" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(164, 989)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_x17lf")
+frame = 1
+frame_progress = 0.318868
+
+[node name="tap_screen_sprite_right" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(551, 989)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_x17lf")
+frame = 1
+frame_progress = 0.318868
+flip_h = true
 
 [connection signal="game_start" from="Menus" to="." method="_on_main_menu_game_start"]
 [connection signal="game_start" from="Menus" to="Player" method="_on_menus_game_start"]

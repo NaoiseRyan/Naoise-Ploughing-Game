@@ -11,6 +11,20 @@ func _ready() -> void:
 	$Player.hide()
 	$Background.hide()
 	$Hud.hide()
+	$tap_screen_sprite_left.hide()
+	$tap_screen_sprite_right.hide()
+	$Press_to_move_label.hide()
+
+func display_tap_screen():
+	$tap_screen_sprite_left.show()
+	$tap_screen_sprite_left.play("default")
+	$tap_screen_sprite_right.show()
+	$tap_screen_sprite_right.play("default")
+	$Press_to_move_label.show()
+	await get_tree().create_timer(3.5).timeout
+	$tap_screen_sprite_left.hide()
+	$tap_screen_sprite_right.hide()
+	$Press_to_move_label.hide()
 
 func _on_main_menu_game_start() -> void:
 	$Menus.hide()
@@ -28,6 +42,7 @@ func end_tutorial() -> void:
 	$HeartSpawner.start()
 	$enemySpawner.start()
 	$peaceSpawner.start()
+	display_tap_screen()
 
 
 func _on_heart_spawner_timeout() -> void:

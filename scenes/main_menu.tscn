@@ -12,6 +12,7 @@ offset_bottom = 1280.0
 script = ExtResource("1_ikam2")
 
 [node name="Main_Menu" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -66,7 +67,6 @@ text = "Credits
 icon_alignment = 1
 
 [node name="Credits_Menu" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -75,14 +75,16 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 720.0
 offset_bottom = 1280.0
-color = Color(0.604367, 0.431358, 0.48821, 1)
+color = Color(0.270588, 0.482353, 0.819608, 1)
 
 [node name="Label" type="Label" parent="Credits_Menu/ColorRect"]
 layout_mode = 0
 offset_right = 720.0
-offset_bottom = 912.0
-theme_override_font_sizes/font_size = 45
-text = "Game created by:
+offset_bottom = 1024.0
+theme_override_font_sizes/font_size = 40
+text = "I wanted to create a game that did not need the player to choose violence to progress but instead show's you that peace is always an option!
+
+Game and Assets created by:
 Naoise Ryan
 
 Linkedin: 
@@ -90,8 +92,7 @@ naoiseryan
 
 Email:
  naoiseryan20@gmail.com
-
-I wanted to create a game where the player cannot attack to show you that peace is always an option"
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -99,9 +100,9 @@ autowrap_mode = 2
 [node name="Go Back" type="Button" parent="Credits_Menu"]
 layout_mode = 0
 offset_left = 128.0
-offset_top = 1040.0
+offset_top = 1081.0
 offset_right = 592.0
-offset_bottom = 1168.0
+offset_bottom = 1209.0
 theme_override_font_sizes/font_size = 60
 text = "Back"
 icon_alignment = 1

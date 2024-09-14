@@ -103,6 +103,7 @@ vertical_alignment = 1
 position = Vector2(190, 640)
 scale = Vector2(1.12, 1.12)
 shape = SubResource("RectangleShape2D_g2y82")
+shape_visible = false
 passby_press = true
 action = "move_left"
 
@@ -110,6 +111,7 @@ action = "move_left"
 position = Vector2(552, 640)
 scale = Vector2(-1, -1.08819)
 shape = SubResource("RectangleShape2D_g2y82")
+shape_visible = false
 passby_press = true
 action = "move_right"
 
