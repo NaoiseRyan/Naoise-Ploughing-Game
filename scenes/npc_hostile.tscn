@@ -1,19 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqedndiw3l4ho"]
 
-[ext_resource type="Texture2D" uid="uid://m4msmnoqg087" path="res://icon.svg" id="1_8hv00"]
 [ext_resource type="Script" path="res://scenes/npc_hostile.gd" id="1_o8xq3"]
+[ext_resource type="Texture2D" uid="uid://jb2is7noemy" path="res://Assets/plane.png" id="2_85e3c"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lori"]
-size = Vector2(128, 128)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5cblk"]
+radius = 51.0
+height = 102.0
 
 [node name="NPC_hostile" type="Area2D" groups=["enemy"]]
+scale = Vector2(1.25, 1.25)
 collision_layer = 4
 script = ExtResource("1_o8xq3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_8hv00")
+texture_filter = 1
+texture = ExtResource("2_85e3c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_4lori")
+position = Vector2(-2, -3)
+shape = SubResource("CapsuleShape2D_5cblk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

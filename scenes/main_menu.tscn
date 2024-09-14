@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dilhbvjivbvnd" path="res://Assets/Sprite-0002.png" id="2_dq4cs"]
 [ext_resource type="Texture2D" uid="uid://7kgaeyuj6u1r" path="res://Assets/menu_bird.png" id="2_rd1mi"]
 [ext_resource type="Texture2D" uid="uid://bhfrphpfujie2" path="res://Assets/heart.png" id="4_pifty"]
-[ext_resource type="Texture2D" uid="uid://m4msmnoqg087" path="res://icon.svg" id="5_2jb8a"]
+[ext_resource type="Texture2D" uid="uid://jb2is7noemy" path="res://Assets/plane.png" id="5_16df6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8xgjn"]
 font_size = 72
@@ -122,6 +122,7 @@ offset_right = 40.0
 offset_bottom = -112.0
 
 [node name="ColorRect" type="ColorRect" parent="Lose_Menu"]
+layout_mode = 0
 offset_top = 144.0
 offset_right = 720.0
 offset_bottom = 1432.0
@@ -186,8 +187,8 @@ autowrap_mode = 2
 [node name="War" type="Sprite2D" parent="Lose_Menu/ColorRect/War_text"]
 texture_filter = 1
 position = Vector2(512, 72)
-scale = Vector2(0.96875, 0.96875)
-texture = ExtResource("5_2jb8a")
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("5_16df6")
 
 [node name="Lose_button" type="Button" parent="Lose_Menu/ColorRect"]
 layout_mode = 0
