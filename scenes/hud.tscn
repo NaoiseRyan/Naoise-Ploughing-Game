@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://pw068sg14fvs"]
+[gd_scene load_steps=9 format=3 uid="uid://pw068sg14fvs"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_qkxm0"]
 
@@ -23,6 +23,12 @@ font_size = 35
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2y82"]
 size = Vector2(341, 1280)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_burj7"]
+bg_color = Color(0.854902, 0.203922, 0.278431, 0.784314)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0qdu5"]
+font_size = 35
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -115,9 +121,23 @@ shape_visible = false
 passby_press = true
 action = "move_right"
 
-[node name="ProgressBar2" type="ProgressBar" parent="."]
+[node name="Health_bar" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = 64.0
+offset_top = 1152.0
+offset_right = 656.0
+offset_bottom = 1216.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_burj7")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Health_bar"]
+layout_mode = 0
+offset_right = 592.0
+offset_bottom = 64.0
+text = "Love"
+label_settings = SubResource("LabelSettings_0qdu5")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="value_changed" from="ProgressBar" to="." method="_on_progress_bar_value_changed"]

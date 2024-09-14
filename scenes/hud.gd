@@ -30,7 +30,7 @@ func display_tutorial_text():
 	hide_text()
 	
 func update_score(new_score):
-	score += new_score
+	score = new_score
 	$Score_Count.text = str(score)
 
 
@@ -62,3 +62,6 @@ func reset_peace_meter():
 
 func _on_player_peace_shield_end() -> void:
 	reset_peace_meter()
+
+func update_health_bar(health):
+	$Health_bar.value = (health * 20)

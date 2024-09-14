@@ -4,9 +4,15 @@ var heart_scene = preload("res://scenes/heart_item.tscn")
 var peace_scene = preload("res://scenes/peace.tscn")
 var npc_hostile_scene = preload("res://scenes/npc_hostile.tscn")
 
+const MAX_HEALTH = 5
+var health = MAX_HEALTH
+var score = 0
+
 var difficulty_modifier = 1
 
 signal tutorial_over
+
+signal game_over_signal
 
 func _ready() -> void:
 	$Menus.show()
@@ -29,7 +35,14 @@ func display_tap_screen():
 	$Press_to_move_label.hide()
 
 func _on_main_menu_game_start() -> void:
+	score = 0
+	$Hud.update_score(score)
+	$Background/Bg_Parallax.autoscroll.y = 50
 	$Menus.hide()
+	$Hud.reset_peace_meter()
+	health = MAX_HEALTH
+	$Hud.update_health_bar(health)
+	difficulty_modifier = 1
 	$Player.position.x = get_viewport_rect().size.x/2
 	$Player.position.y = get_viewport_rect().size.y/1.5
 	$Player.show()
@@ -62,8 +75,11 @@ func get_random_spawn_point():
 	return random_point.position
 
 func player_pickup_heart():
-	$Hud.update_score(1)
-
+	health += 1
+	score += 1
+	prevent_health_overflow()
+	$Hud.update_health_bar(health)
+	$Hud.update_score(score)
 
 func _on_enemy_spawner_timeout() -> void:
 	$enemySpawner.wait_time = RandomNumberGenerator.new().randf_range(.4 / difficulty_modifier + 0.9, 3 / difficulty_modifier)
@@ -73,8 +89,18 @@ func _on_enemy_spawner_timeout() -> void:
 	new_enemy.position = get_random_spawn_point()
 
 func player_hit_enemy():
-	$Hud.update_score(-2)
+	health -= 1
+	score -= 2
+	prevent_health_overflow()
+	$Hud.update_health_bar(health)
+	$Hud.update_score(score)
 
+func prevent_health_overflow():
+	if health > 5:
+		health = 5
+	elif health <= 0:
+		$Menus.update_score(score)
+		game_over()
 
 func _on_peace_spawner_timeout() -> void:
 	$peaceSpawner.wait_time = RandomNumberGenerator.new().randf_range(3, 10)
@@ -84,8 +110,9 @@ func _on_peace_spawner_timeout() -> void:
 	new_peace.position = get_random_spawn_point()
 
 func player_pickup_peace():
+	score += 3
 	$Hud.update_peace_meter(20)
-	$Hud.update_score(3)
+	$Hud.update_score(score)
 
 
 func _on_hud_release_peace() -> void:
@@ -95,3 +122,14 @@ func _on_hud_release_peace() -> void:
 func _on_increase_difficulty_timeout() -> void:
 	difficulty_modifier += 1
 	$Background/Bg_Parallax.autoscroll.y += 100
+
+func game_over():
+	game_over_signal.emit()
+	$Menus.show()
+	$Menus.game_over_screen()
+	$HeartSpawner.stop()
+	$enemySpawner.stop()
+	$peaceSpawner.stop()
+	$Increase_Difficulty.stop()
+	$Background/Bg_Parallax.autoscroll.y = 0
+	

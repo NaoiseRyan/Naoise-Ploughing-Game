@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw45j0ba3l2f0"]
+[gd_scene load_steps=7 format=3 uid="uid://cw45j0ba3l2f0"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_ikam2"]
 [ext_resource type="Texture2D" uid="uid://dilhbvjivbvnd" path="res://Assets/Sprite-0002.png" id="2_dq4cs"]
 [ext_resource type="Texture2D" uid="uid://7kgaeyuj6u1r" path="res://Assets/menu_bird.png" id="2_rd1mi"]
+[ext_resource type="Texture2D" uid="uid://bhfrphpfujie2" path="res://Assets/heart.png" id="4_pifty"]
+[ext_resource type="Texture2D" uid="uid://m4msmnoqg087" path="res://icon.svg" id="5_2jb8a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8xgjn"]
+font_size = 72
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -67,6 +74,7 @@ text = "Credits
 icon_alignment = 1
 
 [node name="Credits_Menu" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -107,6 +115,109 @@ theme_override_font_sizes/font_size = 60
 text = "Back"
 icon_alignment = 1
 
+[node name="Lose_Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_top = -152.0
+offset_right = 40.0
+offset_bottom = -112.0
+
+[node name="ColorRect" type="ColorRect" parent="Lose_Menu"]
+offset_top = 144.0
+offset_right = 720.0
+offset_bottom = 1432.0
+color = Color(0.270588, 0.482353, 0.819608, 1)
+
+[node name="Label" type="Label" parent="Lose_Menu/ColorRect"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 720.0
+offset_bottom = 176.0
+theme_override_font_sizes/font_size = 60
+text = "You ran out of Love"
+label_settings = SubResource("LabelSettings_8xgjn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heart_text" type="Label" parent="Lose_Menu/ColorRect"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 240.0
+offset_right = 448.0
+offset_bottom = 368.0
+theme_override_font_sizes/font_size = 30
+text = "Pickup hearts to increase Love and score"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Heart" type="Sprite2D" parent="Lose_Menu/ColorRect/Heart_text"]
+texture_filter = 1
+position = Vector2(512, 64)
+scale = Vector2(2, 2)
+texture = ExtResource("4_pifty")
+
+[node name="Peace_text" type="Label" parent="Lose_Menu/ColorRect"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 432.0
+offset_right = 448.0
+offset_bottom = 560.0
+theme_override_font_sizes/font_size = 30
+text = "Pickup peace to get a shield and increase score"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Peace" type="Sprite2D" parent="Lose_Menu/ColorRect/Peace_text"]
+texture_filter = 1
+position = Vector2(512, 64)
+scale = Vector2(2, 2)
+texture = ExtResource("2_dq4cs")
+
+[node name="War_text" type="Label" parent="Lose_Menu/ColorRect"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 616.0
+offset_right = 448.0
+offset_bottom = 744.0
+theme_override_font_sizes/font_size = 30
+text = "Avoid war or you lose love and score"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="War" type="Sprite2D" parent="Lose_Menu/ColorRect/War_text"]
+texture_filter = 1
+position = Vector2(512, 72)
+scale = Vector2(0.96875, 0.96875)
+texture = ExtResource("5_2jb8a")
+
+[node name="Lose_button" type="Button" parent="Lose_Menu/ColorRect"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 1081.0
+offset_right = 592.0
+offset_bottom = 1209.0
+theme_override_font_sizes/font_size = 60
+text = "Play Again"
+
+[node name="Score_title" type="Label" parent="Lose_Menu"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 952.0
+offset_right = 320.0
+offset_bottom = 1080.0
+theme_override_font_sizes/font_size = 75
+text = "Score:"
+vertical_alignment = 1
+
+[node name="Score_amount" type="Label" parent="Lose_Menu/Score_title"]
+layout_mode = 0
+offset_left = 256.0
+offset_right = 576.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 75
+text = "0"
+vertical_alignment = 1
+
 [connection signal="button_up" from="Main_Menu/Start Game" to="." method="_on_start_game_button_up"]
 [connection signal="button_up" from="Main_Menu/Credits" to="." method="_on_credits_button_up"]
 [connection signal="button_up" from="Credits_Menu/Go Back" to="." method="_on_go_back_button_up"]
+[connection signal="pressed" from="Lose_Menu/ColorRect/Lose_button" to="." method="_on_lose_button_pressed"]
