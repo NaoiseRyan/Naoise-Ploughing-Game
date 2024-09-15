@@ -66,7 +66,7 @@ func end_tutorial() -> void:
 
 
 func _on_heart_spawner_timeout() -> void:
-	$HeartSpawner.wait_time = RandomNumberGenerator.new().randf_range(1.5, 7)
+	$HeartSpawner.wait_time = RandomNumberGenerator.new().randf_range(2.5, 7)
 	var new_heart = heart_scene.instantiate()
 	$Spawn_Path.add_child(new_heart)
 	new_heart.player_collision.connect(player_pickup_heart)
@@ -93,7 +93,7 @@ func _on_enemy_spawner_timeout() -> void:
 	new_enemy.position = get_random_spawn_point()
 
 func player_hit_enemy():
-	health -= 1
+	health -= 2
 	score -= 2
 	prevent_health_overflow()
 	$Hud.update_health_bar(health)
