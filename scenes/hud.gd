@@ -46,6 +46,7 @@ func _on_progress_bar_value_changed(value: float) -> void:
 	if $ProgressBar.value >= 100:
 		sb.bg_color = Color("ffc905")
 		release_peace.emit()
+		get_tree().create_tween().tween_property($ProgressBar, "value", 0, 5).set_trans(Tween.TRANS_LINEAR)
 	else:
 		update_peace_meter_color()
 
