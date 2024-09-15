@@ -10,6 +10,7 @@ signal peace_shield_end
 func _ready():
 	screen_size = get_viewport_rect().size
 	disable_peace_shield()
+	$peace_shield/Peace_shield_sprite.play("default")
 	
 func _physics_process(delta: float) -> void:
 
