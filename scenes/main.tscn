@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://n3vggbquo6d7"]
+[gd_scene load_steps=16 format=3 uid="uid://n3vggbquo6d7"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_flapf"]
 [ext_resource type="PackedScene" uid="uid://7ptfg87qr38n" path="res://scenes/player.tscn" id="1_pqwji"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b8o16ukwudkdn" path="res://scenes/background.tscn" id="4_bv8yi"]
 [ext_resource type="PackedScene" uid="uid://pw068sg14fvs" path="res://scenes/hud.tscn" id="5_cs070"]
 [ext_resource type="Texture2D" uid="uid://bgwr7yu4v3p1v" path="res://Assets/tap_screen.png" id="6_68i4i"]
+[ext_resource type="Texture2D" uid="uid://dilhbvjivbvnd" path="res://Assets/Sprite-0002.png" id="7_l2k1j"]
 
 [sub_resource type="Curve2D" id="Curve2D_eeddm"]
 _data = {
@@ -53,6 +54,11 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l6wko"]
+font_size = 65
+outline_size = 25
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_flapf")
@@ -113,6 +119,33 @@ flip_h = true
 wait_time = 10.0
 
 [node name="Menus" parent="." instance=ExtResource("2_4p8au")]
+
+[node name="First_peace_release_message" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="First_peace_release_message"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 288.0
+offset_right = 717.0
+offset_bottom = 1277.0
+theme_override_font_sizes/font_size = 65
+text = "Peace protects you!
+
+War is blocked for a limited amount of time!"
+label_settings = SubResource("LabelSettings_l6wko")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Sprite-0002" type="Sprite2D" parent="First_peace_release_message"]
+texture_filter = 1
+position = Vector2(360, 272)
+scale = Vector2(5.30469, 5.30469)
+texture = ExtResource("7_l2k1j")
 
 [connection signal="peace_shield_end" from="Player" to="Hud" method="_on_player_peace_shield_end"]
 [connection signal="timeout" from="HeartSpawner" to="." method="_on_heart_spawner_timeout"]

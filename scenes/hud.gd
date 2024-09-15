@@ -6,7 +6,6 @@ var score = 0
 
 var sb = StyleBoxFlat.new()
 
-
 func _ready() -> void:
 	hide_text()
 	$Score_Count.text = str(score)

@@ -10,6 +10,8 @@ var score = 0
 
 var difficulty_modifier = 1
 
+var first_peace_release = true
+
 signal tutorial_over
 
 signal game_over_signal
@@ -22,6 +24,7 @@ func _ready() -> void:
 	$tap_screen_sprite_left.hide()
 	$tap_screen_sprite_right.hide()
 	$Press_to_move_label.hide()
+	$First_peace_release_message.hide()
 
 func display_tap_screen():
 	$tap_screen_sprite_left.show()
@@ -36,6 +39,7 @@ func display_tap_screen():
 
 func _on_main_menu_game_start() -> void:
 	score = 0
+	first_peace_release = true
 	$Hud.update_score(score)
 	$Background/Bg_Parallax.autoscroll.y = 50
 	$Menus.hide()
@@ -116,6 +120,15 @@ func player_pickup_peace():
 
 
 func _on_hud_release_peace() -> void:
+	if first_peace_release:
+		first_peace_release = false
+		get_tree().paused = true
+		$First_peace_release_message.show()
+		$Hud.hide()
+		await get_tree().create_timer(6).timeout
+		get_tree().paused = false
+		$First_peace_release_message.hide()
+		$Hud.show()
 	$Player.enable_peace_shield()
 
 
