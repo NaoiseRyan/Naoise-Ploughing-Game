@@ -1,9 +1,0 @@
-res://scenes/background.tscn::44d379088bf2b11ba89bf03dad666531::1726509050::res://.godot/exported/133200997/export-f1e46807209045e58980fb2be1ec694d-background.scn
-res://scenes/boss_enemy.tscn::478e7f7d457d73e29aae47133777499e::1726509050::res://.godot/exported/133200997/export-5c33cd7b78164438fed607ed1d9db991-boss_enemy.scn
-res://scenes/heart_item.tscn::e8b31948ed9608f9959a715246338bd9::1726509050::res://.godot/exported/133200997/export-1483c06012cad64cf0aa7e3e758bcc62-heart_item.scn
-res://scenes/hud.tscn::c3b558cfebc994cb2713314f59bfea2a::1726509050::res://.godot/exported/133200997/export-38bf74ff262409a94a41206b2b776d33-hud.scn
-res://scenes/main.tscn::e74e8fca0abba25bd9fc441428a87865::1726509208::res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
-res://scenes/main_menu.tscn::933bf8057d89fa1fc53c7fd9ebb84813::1726509050::res://.godot/exported/133200997/export-ea5c6ad4629af728dc514cefde332394-main_menu.scn
-res://scenes/npc_hostile.tscn::4c3f96333ffffb08148c1e50f8afced0::1726509050::res://.godot/exported/133200997/export-0ffc9f400315268fa2206d1c2f78f70c-npc_hostile.scn
-res://scenes/peace.tscn::b2d0d407d5bf606ad1c6ab99490fbaf8::1726509050::res://.godot/exported/133200997/export-dfa865b46c6262bd2404304423c7341a-peace.scn
-res://scenes/player.tscn::7feeda4a404da92a86e583ec53884faa::1726509050::res://.godot/exported/133200997/export-234fb6894ec6226e856ab7f825500d3d-player.scn
