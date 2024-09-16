@@ -13,6 +13,8 @@ config_version=5
 config/name="Ploughing Game Naoise"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0.270588, 0.482353, 0.819608, 1)
+boot_splash/image="res://Assets/512x512.png"
 config/icon="res://Assets/512x512.png"
 
 [display]
